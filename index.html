@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="tower.png">
+
+	<title>Index</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<link href="bootstrap/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<!-- Custom styles for this page -->
+	<link href="site.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Blackpool Illuminations</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="dropdown" >
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" class="active" role="button" aria-haspopup="true" aria-expanded="false">Light Info<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+					<li class="active"><a href="index.html">View display information</a></li>
+					<li><a href="editdisplayinfo.html">Edit display information</a></li>
+					</ul>
+					</li>
+					<li><a href="deviceaddressing.html">Device Address</a></li>
+					<li><a href="#displayeditor">Display Editor</a></li>
+					<li><a href="#channelconfiguration">Channel Configuration</a></li>
+					<li><a href="#diagnosticreport">Diagnostic Report</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"> <span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Main Content -->
+	<div class="container">
+		<h5 style="text-align:right;">User: JoeM</p>
+		<h5 id="date" style="text-align:right;"></p>
+	</div>
+	
+	<script>
+		document.getElementById("date").innerHTML = Date();
+	</script>
+	
+	<div class="jumbotron text-center">
+
+	<h1>Display Info</h1>
+	
+	<div class="container" style="max-width: 600px;">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Display Name:</th>
+				<th>IndianA</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="success">
+				<td><b>Status:</b></td>
+				<td>Fully Functional</td>
+			</tr>
+			<tr>
+				<td><b>Type:</b></td>
+				<td>Light Display</td>
+			</tr>
+			<tr>
+				<td><b>IP Address:</b></td>
+				<td>127.0.0.1</td>
+			</tr>
+			<tr>
+				<td><b>Version:</b></td>
+				<td>1.01</td>
+			</tr>
+			<tr>
+				<td><b>Number of Channels:</b></td>
+				<td>174</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<a href="EditDisplayInfo.html" class="btn btn-primary" role="button">Edit this information...</a>
+	
+	</div>
+	</div>
+	
+	<div class="container">
+		<h2>Tasks</h2>
+        <div class="col-sm-3">
+			<a type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 70px;">Configure device channels...</a>
+			<p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+		</div>
+		<div class="col-sm-3">
+			<a type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 70px;">View diagnostic report...</a>
+			<p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+        <div class="col-sm-3">
+			<a type="button" href="deviceaddressing.html" class="btn btn-primary btn-lg btn-block" style="min-height: 70px;">Configure device addressing...</a>
+			<p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis fabereris interdum.</p>
+		</div>
+		<div class="col-sm-3">  
+			<a type="button" class="btn btn-primary btn-lg btn-block" style="min-height: 70px;">Enter display editor...</a>
+			<p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+        </div>
+	</div> 
+	
+	<div class="container">
+	<footer class="footer">
+        <p>&copy; 2016 Blackpool Illuminations</p>
+    </footer>
+	</div> 
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="bootstrap/docs/assets/js/vendor/jquery.min.js"><\/script>')</script>
+	<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="bootstrap/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
