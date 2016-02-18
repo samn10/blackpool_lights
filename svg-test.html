@@ -18,13 +18,22 @@
 			<svg id="svg_div" style="padding-right:0px;" width="700" height="400" >
 				Sorry, your browser does not support inline SVG.
 				<g>
-					<rect id=rectangle-svg onmousedown="mouseDown(event, this.id)"  width="100" height="100" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
+					<rect id=rectangle-svg onmousedown="mouseDown(event, this.id)" width="100" height="100" x="0" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
+					<script>
+						document.getElementById('rectangle-svg').setAttribute('y', document.getElementById('svg_div').getAttribute('height') - document.getElementById('rectangle-svg').getAttribute('height'));
+					</script>
 				</g>
 				<g>
-					<rect id=rectangle-svg1 onmousedown="mouseDown(event, this.id)" x="100" width="100" height="100" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
+					<rect id=rectangle-svg1 onmousedown="mouseDown(event, this.id)" width="100" height="100" x="100" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
+					<script>
+						document.getElementById('rectangle-svg1').setAttribute('y', document.getElementById('svg_div').getAttribute('height') - document.getElementById('rectangle-svg1').getAttribute('height'));
+					</script>
 				</g>
 				<g>
-					<rect id=rectangle-svg2 onmousedown="mouseDown(event, this.id)" x="200" width="100" height="100" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
+					<rect id=rectangle-svg2 onmousedown="mouseDown(event, this.id)" width="100" height="100" x="200" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
+					<script>
+						document.getElementById('rectangle-svg2').setAttribute('y', document.getElementById('svg_div').getAttribute('height') - document.getElementById('rectangle-svg2').getAttribute('height'));
+					</script>
 				</g>
 			</svg>
 			
@@ -76,7 +85,10 @@ function mouseDown(e, id)	{
 		document.getElementById("w").innerHTML = w	
 		var move = y - starty
 		document.getElementById("move").innerHTML = move
-		var adjust_height = bh+move;
+		var adjust_height = bh-move;
+		
+		var adjust_height = Math.round(adjust_height / 20) * 20;
+		
 		if(adjust_height>390)	{
 			adjust_height=390;
 		}
@@ -84,6 +96,7 @@ function mouseDown(e, id)	{
 			adjust_height=10;
 		}
 		s.setAttribute("height", adjust_height);
+		s.setAttribute('y', document.getElementById('svg_div').getAttribute('height') - adjust_height)
 	}
 	this.onmouseup = function() {
 		document.onmousemove = null
@@ -101,7 +114,8 @@ function newObject()	{
 	newElement.setAttribute("onmousedown", "mouseDown(event, this.id)"); 
 	newElement.setAttribute("width", 100); 
 	newElement.setAttribute("height", 100); 
-	newElement.setAttribute("x", 300); 
+	newElement.setAttribute("x", 300);
+	newElement.setAttribute("y", document.getElementById('svg_div').getAttribute('height') - newElement.getAttribute('height'));
 	newElement.setAttribute("style", "fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)"); 
 	
 	
