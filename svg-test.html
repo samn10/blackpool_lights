@@ -1,9 +1,8 @@
-
 <!DOCTYPE HTML>
 <html lang="en">
 
   <head>
-    <title>SVG Test</title>    
+    <title>Test</title>    
 	<style type="text/css">
 		svg {
 		  border: solid 1px #aaa;
@@ -13,43 +12,41 @@
 
   <body>
     <h2>Controlling SVG with Javascript</h2>
-    <div >
-		<div style="padding: 0px">	
+    <div >	
+		<div style="overflow: scroll;">
 			<svg id="svg_div" style="padding-right:0px;" width="700" height="400" >
 				Sorry, your browser does not support inline SVG.
 				<g>
-					<rect id=rectangle-svg onmousedown="mouseDown(event, this.id)" width="100" height="100" x="0" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
+					<rect id=rectangle-svg class="channel1" onmousedown="mouseDown(event, this.id)"  width="100" height="100" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
 					<script>
 						document.getElementById('rectangle-svg').setAttribute('y', document.getElementById('svg_div').getAttribute('height') - document.getElementById('rectangle-svg').getAttribute('height'));
 					</script>
 				</g>
 				<g>
-					<rect id=rectangle-svg1 onmousedown="mouseDown(event, this.id)" width="100" height="100" x="100" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
+					<rect id=rectangle-svg1 class="channel1" onmousedown="mouseDown(event, this.id)" x="100" width="100" height="100" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
 					<script>
 						document.getElementById('rectangle-svg1').setAttribute('y', document.getElementById('svg_div').getAttribute('height') - document.getElementById('rectangle-svg1').getAttribute('height'));
 					</script>
 				</g>
 				<g>
-					<rect id=rectangle-svg2 onmousedown="mouseDown(event, this.id)" width="100" height="100" x="200" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
+					<rect id=rectangle-svg2 class="channel1" onmousedown="mouseDown(event, this.id)" x="200" width="100" height="100" style="fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)" />
 					<script>
 						document.getElementById('rectangle-svg2').setAttribute('y', document.getElementById('svg_div').getAttribute('height') - document.getElementById('rectangle-svg2').getAttribute('height'));
 					</script>
 				</g>
 			</svg>
-			
-				
-	    </div>
+		</div>
 		<p id="demo"></p>
 		<p id="h"></p>
 		<p id="w"></p>
 		<p id="startytext"></p>	
 		<p id="move"></p>	
+		<p>Array Length: <span id="arrayLength"></span></p>	
 		<button onclick="newObject()"> Click Me </button>
 	</div>
 
 
 <script>
-
 var arrayOfBars = [];
 // Use getELementsByClassName (or getElementsBy(SOMETHING ELSE)) give each rectangle a class name (this can be different between 
 // channels)
@@ -63,6 +60,8 @@ function myFunction() {
 }
 
 function mouseDown(e, id)	{
+	arrayOfBars = document.getElementsByClassName("channel1");
+	document.getElementById("arrayLength").innerHTML = arrayOfBars.length
 	var s = document.getElementById(id);
 	var bh = s.height.baseVal.value
 	var bw = s.width.baseVal.value
@@ -71,7 +70,7 @@ function mouseDown(e, id)	{
 	document.getElementById("startytext").innerHTML = inity
 	//s.setAttribute("x", 3);
 	//s.setAttribute("y", 3);
-	s.setAttribute("cursor", "ns-resize");
+	document.body.style.cursor= "ns-resize";
 	
 	document.onmousemove = function(e) {
 		var x = e.clientX;
@@ -96,31 +95,40 @@ function mouseDown(e, id)	{
 			adjust_height=10;
 		}
 		s.setAttribute("height", adjust_height);
-		s.setAttribute('y', document.getElementById('svg_div').getAttribute('height') - adjust_height)
+		s.setAttribute('y', document.getElementById('svg_div').getAttribute('height') - adjust_height);
 	}
 	this.onmouseup = function() {
 		document.onmousemove = null
-		s.setAttribute("cursor", "default");
+		document.body.style.cursor = "default";
 	}
 
 }
 
+// Might be useful to add the class/ID of the chart so its added to the right chart
 function newObject()	{
+	var i;
+	var position = 0;
+	arrayOfBars = document.getElementsByClassName("channel1");
+	// Add all the widths to use for the correct position 
+	for(i=0; i<arrayOfBars.length;i++)	{
+		position += arrayOfBars[i].width.baseVal.value;
+	}
 	
 	var newGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g'); 		// Create groupin SVG's namespace
 	var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect'); 	// Create a rectangle in SVG's namespace
-	// ID, onmousedown,
-	newElement.setAttribute("id", "rectangle-svg"+3); 
+	newElement.setAttribute("id", "rectangle-svg"+(arrayOfBars.length+1)); 
+	newElement.setAttribute("class", "channel1");
 	newElement.setAttribute("onmousedown", "mouseDown(event, this.id)"); 
 	newElement.setAttribute("width", 100); 
 	newElement.setAttribute("height", 100); 
-	newElement.setAttribute("x", 300);
+	newElement.setAttribute("x", position); 
 	newElement.setAttribute("y", document.getElementById('svg_div').getAttribute('height') - newElement.getAttribute('height'));
 	newElement.setAttribute("style", "fill:lightblue; stroke-width:1; stroke:rgb(0,0,0)"); 
-	
-	
 	newGroup.appendChild(newElement);
+	
 	document.getElementById('svg_div').appendChild(newGroup);
+	arrayOfBars = document.getElementsByClassName("channel1");
+	document.getElementById("arrayLength").innerHTML = arrayOfBars.length 	// Check been added to array 
 }
 
 
